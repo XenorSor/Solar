@@ -51,7 +51,7 @@ def main():
     S_H = TimeSunSet.hour
     S_M = TimeSunSet.minute
     S_S = TimeSunSet.second
-
+    print(T_H)
     input_features = [
         Temperature, Pressure, Humidity, WindDirection, Speed, T_H, T_M, T_S, D_M, D_D, R_M, S_H, S_M, W_D, Season
     ]
