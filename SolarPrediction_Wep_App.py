@@ -76,7 +76,8 @@ def main():
         ]
         input = pd.DataFrame([input_features], columns=columns)
         input = scaler.transform(input)
-        input_data = input.drop(['Speed', 'T_S', 'D_M', 'S_H', 'W_D', 'Season'], axis=1)
+        df = pd.DataFrame(input, columns=columns)
+        input_data = df.drop(['Speed', 'T_S', 'D_M', 'S_H', 'W_D', 'Season'], axis=1)
         st.session_state['prediction'] = solar_prediction(input_data)
         st.success(f"Prediction result: {st.session_state['prediction']}")
 
