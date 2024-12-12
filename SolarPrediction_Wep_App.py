@@ -25,7 +25,8 @@ def main():
     TimeSunRise = st.time_input('Sunrise (Hawaii time)')
     TimeSunSet = st.time_input('Sunset (Hawaii time)')
 
-    prediction = ''
+    if 'prediction' not in st.session_state:
+        st.session_state['prediction'] = ''
 
     D_Y = Date.year
     D_M = Date.month
@@ -41,9 +42,8 @@ def main():
     S_S = TimeSunSet.second
 
     if st.button('Solar Prediction Result'):
-        prediction = solar_prediction([Temperature, Pressure, Humidity, WindDirection, T_H, T_M, D_D, R_M, S_M])
-
-    st.success(prediction)
+        st.session_state['prediction'] = solar_prediction([Temperature, Pressure, Humidity, WindDirection, T_H, T_M, D_D, R_M, S_M])
+        st.success(f"Prediction result: {st.session_state['prediction']}")
 
 if __name__ == '__main__':
     main()
