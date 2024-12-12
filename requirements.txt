@@ -1,8 +1,3 @@
-<<<<<<< HEAD
 streamlit==1.26.0
 numpy
-=======
-streamlit==1.26.0
-numpy
->>>>>>> d33af9ddb51c818b53b461e9599e26d0c806cf40
 scikit-learn==1.5.2
