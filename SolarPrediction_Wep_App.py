@@ -26,7 +26,7 @@ def main():
     TimeSunSet = st.time_input('Sunset (Hawaii time)')
 
     float_value = st.number_input(
-        label="Number",
+        "Number",
         step=0.01,
     )
     int_value = round(float_value * 100)
