@@ -30,7 +30,7 @@ def main():
     if 'prediction' not in st.session_state:
         st.session_state['prediction'] = ''
     
-    W_D = Date.weekday
+    W_D = Date.weekday(Date)
     D_Y = Date.year
     D_M = Date.month
     D_D = Date.day
