@@ -58,7 +58,7 @@ def main():
 
     if st.button('Solar Prediction Result'):
         columns = [
-            'Temperature', 'Pressure', 'Humidity', 'WindDirection', 'Speed', 'T_H', 'T_M', 'T_S', 'D_M', 'D_D', 'R_M', 'S_H', 'S_M', 'W_D', 'Season'
+            'Temperature', 'Pressure', 'Humidity', 'WindDirection(Degrees)', 'Speed', 'T_H', 'T_M', 'T_S', 'D_M', 'D_D', 'R_M', 'S_H', 'S_M', 'W_D', 'Season'
         ]
         input = pd.DataFrame([input_features], columns=columns)
         input = scaler.transform(input)
