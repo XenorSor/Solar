@@ -1,13 +1,16 @@
 import pickle
 import numpy as np
 import streamlit as st
+import pandas as pd
 
 loaded_model = pickle.load(open('solar_pred.sav', 'rb'))
+scaler = pickle.load(open('scaler.pkl', 'rb'))
+label = pickle.load(open('label.pkl', 'rb'))
 
 def solar_prediction(input_data):
     input_data_as_numpy_array = np.asarray(input_data)
     input_data_reshaped = input_data_as_numpy_array.reshape(1, -1)
-
+    input_data_as_numpy_array = scaler.transform(input_data_as_numpy_array)
     prediction = loaded_model.predict(input_data_reshaped)
 
     return prediction
@@ -27,10 +30,12 @@ def main():
 
     if 'prediction' not in st.session_state:
         st.session_state['prediction'] = ''
-
+    
+    W_D = Date.weekday
     D_Y = Date.year
     D_M = Date.month
     D_D = Date.day
+    Season = D_M.apply(lambda x: 'Winter' if x in [12, 1, 2] else ('Spring' if x in [3, 4, 5] else ('Summer' if x in [6, 7, 8] else 'Autumn')))
     T_H = Time.hour
     T_M = Time.minute
     T_S = Time.second
@@ -40,9 +45,20 @@ def main():
     S_H = TimeSunSet.hour
     S_M = TimeSunSet.minute
     S_S = TimeSunSet.second
+    Season = label.transform(Season)
+
+    input_features = [
+        Temperature, Pressure, Humidity, WindDirection, Speed, T_H, T_M, T_S, D_M, D_D, R_M, S_H, S_M, W_D, Season
+    ]
 
     if st.button('Solar Prediction Result'):
-        st.session_state['prediction'] = solar_prediction([Temperature, Pressure, Humidity, WindDirection, T_H, T_M, D_D, R_M, S_M])
+        columns = [
+            'Temperature', 'Pressure', 'Humidity', 'WindDirection', 'Speed', 'T_H', 'T_M', 'T_S', 'D_M', 'D_D', 'R_M', 'S_H', 'S_M', 'W_D', 'Season'
+        ]
+        input = pd.DataFrame([input_features], columns=columns)
+        input = scaler.transform(input)
+        input_data = input.drop(['Speed', 'T_S', 'D_M', 'S_H', 'W_D', 'Season'], axis=1)
+        st.session_state['prediction'] = solar_prediction(input_data)
         st.success(f"Prediction result: {st.session_state['prediction']}")
 
 if __name__ == '__main__':
