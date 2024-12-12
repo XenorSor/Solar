@@ -14,7 +14,7 @@ def solar_prediction(input_data):
 
 def main():
     st.title('Solar Prediction Web App')
-    print("Feature sorrend:", loaded_model.feature_names_in_)
+    
     Date = st.date_input('Date of measurement')
     Time = st.time_input('Time of measurement')
     Temperature = st.number_input('Temperature (°F)', step=1., min_value=-459., max_value=10000., value=20., format='%.2f')
