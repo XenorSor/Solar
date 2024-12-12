@@ -35,7 +35,14 @@ def main():
     D_Y = Date.year
     D_M = Date.month
     D_D = Date.day
-    Season = D_M.apply(lambda x: 'Winter' if x in [12, 1, 2] else ('Spring' if x in [3, 4, 5] else ('Summer' if x in [6, 7, 8] else 'Autumn')))
+    if D_M in [12, 1, 2]:
+        Season = 'Winter'
+    elif D_M in [3, 4, 5]:
+        Season = 'Spring'
+    elif D_M in [6, 7, 8]:
+        Season = 'Summer'
+    else:
+        Season = 'Autumn'
     T_H = Time.hour
     T_M = Time.minute
     T_S = Time.second
