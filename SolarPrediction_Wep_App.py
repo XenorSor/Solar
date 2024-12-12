@@ -9,7 +9,6 @@ scaler = pickle.load(open('scaler.pkl', 'rb'))
 def solar_prediction(input_data):
     input_data_as_numpy_array = np.asarray(input_data)
     input_data_reshaped = input_data_as_numpy_array.reshape(1, -1)
-    input_data_as_numpy_array = scaler.transform(input_data_as_numpy_array)
     prediction = loaded_model.predict(input_data_reshaped)
 
     return prediction
