@@ -41,7 +41,7 @@ def main():
     S_S = TimeSunSet.second
 
     if st.button('Solar Prediction Result'):
-        prediction = solar_prediction([D_Y, D_M, D_D, T_H, T_M, T_S, Temperature, Pressure, Humidity, WindDirection, Speed, R_H, R_M, R_S, S_H, S_M, S_S])
+        prediction = solar_prediction([D_D, T_H, T_M, Temperature, Pressure, Humidity, WindDirection, R_M, S_M])
 
     st.success(prediction)
 
