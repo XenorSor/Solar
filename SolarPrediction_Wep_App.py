@@ -55,7 +55,21 @@ def main():
     input_features = [
         Temperature, Pressure, Humidity, WindDirection, Speed, T_H, T_M, T_S, D_M, D_D, R_M, S_H, S_M, W_D, Season
     ]
+    st.write(Temperature)
+    st.write(Pressure)
+    st.write(Humidity)
+    st.write(WindDirection)
+    st.write(Speed)
     st.write(T_H)
+    st.write(T_M)
+    st.write(T_S)
+    st.write(D_M)
+    st.write(D_D)
+    st.write(R_M)
+    st.write(S_H)
+    st.write(S_M)
+    st.write(W_D)
+    st.write(Season)
     if st.button('Solar Prediction Result'):
         columns = [
             'Temperature', 'Pressure', 'Humidity', 'WindDirection(Degrees)', 'Speed', 'T_H', 'T_M', 'T_S', 'D_M', 'D_D', 'R_M', 'S_H', 'S_M', 'W_D', 'Season'
