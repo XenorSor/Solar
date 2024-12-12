@@ -5,7 +5,6 @@ import pandas as pd
 
 loaded_model = pickle.load(open('solar_pred.sav', 'rb'))
 scaler = pickle.load(open('scaler.pkl', 'rb'))
-label = pickle.load(open('label.pkl', 'rb'))
 
 def solar_prediction(input_data):
     input_data_as_numpy_array = np.asarray(input_data)
@@ -36,13 +35,13 @@ def main():
     D_M = Date.month
     D_D = Date.day
     if D_M in [12, 1, 2]:
-        Season = 'Winter'
+        Season = 1
     elif D_M in [3, 4, 5]:
-        Season = 'Spring'
+        Season = 2
     elif D_M in [6, 7, 8]:
-        Season = 'Summer'
+        Season = 3
     else:
-        Season = 'Autumn'
+        Season = 0
     T_H = Time.hour
     T_M = Time.minute
     T_S = Time.second
@@ -52,7 +51,6 @@ def main():
     S_H = TimeSunSet.hour
     S_M = TimeSunSet.minute
     S_S = TimeSunSet.second
-    Season = label.transform(Season)
 
     input_features = [
         Temperature, Pressure, Humidity, WindDirection, Speed, T_H, T_M, T_S, D_M, D_D, R_M, S_H, S_M, W_D, Season
