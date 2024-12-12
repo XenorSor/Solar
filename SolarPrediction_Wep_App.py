@@ -5,12 +5,12 @@ import streamlit as st
 loaded_model = pickle.load(open('solar_pred.sav', 'rb'))
 
 def solar_prediction(input_data):
-     input_data_as_numpy_array = np.asarray(input_data)
-     input_data_reshaped = input_data_as_numpy_array.reshape(1, -1)
+    input_data_as_numpy_array = np.asarray(input_data)
+    input_data_reshaped = input_data_as_numpy_array.reshape(1, -1)
 
-     prediction = loaded_model.predict(input_data_reshaped)
+    prediction = loaded_model.predict(input_data_reshaped)
 
-     return prediction
+    return prediction
 
 def main():
     st.title('Solar Prediction Web App')
@@ -35,7 +35,7 @@ def main():
     prediction = ''
 
     if st.button('Solar Prediction Result'):
-        prediction = solar_prediction([Date, Time, Temperature, Pressure, Humidity, WindDirection, Speed, TimeSunRise, TimeSunSet])
+        prediction = solar_prediction([Date, Time, Temperature, Pressure_f, Humidity, WindDirection, Speed, TimeSunRise, TimeSunSet])
 
     st.success(prediction)
 
